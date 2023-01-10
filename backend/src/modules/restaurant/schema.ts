@@ -1,4 +1,4 @@
-import { object, string, number, TypeOf } from "zod";
+import { object, string, number, array, TypeOf } from "zod";
 
 export const RestaurantQuerySchema = object({
   query: object({
@@ -15,6 +15,7 @@ export const RestaurantParamsSchema = object({
 const AddressObject = object({
   building: string(),
   street: string(),
+  coord: array(number()),
   zipcode: string().regex(/\d+/),
   _id: string(),
 });

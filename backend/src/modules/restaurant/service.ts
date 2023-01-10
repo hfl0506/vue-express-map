@@ -2,9 +2,9 @@ import { Restaurants, RestaurantModel } from "./model";
 import { Types } from "mongoose";
 
 async function getAllService(query: any) {
-  let limit = query?.limit ?? 0;
+  let limit = query?.limit ? Number(query.limit) : 1000;
 
-  return RestaurantModel.find().limit(limit);
+  return RestaurantModel.find().limit(limit).lean().exec();
 }
 
 async function getOneService(id: Types.ObjectId) {

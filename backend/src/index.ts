@@ -11,9 +11,16 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
+const allowOptions = [process.env.ORIGIN_URL, "http://127.0.0.1:5173"];
+
 app.use(express.json());
+app.use(
+  cors({
+    origin: allowOptions,
+    credentials: true,
+  })
+);
 app.use(helmet());
-app.use(cors({ origin: process.env.ORGIN_URL }));
 
 app.use("/api", appRoutes);
 
